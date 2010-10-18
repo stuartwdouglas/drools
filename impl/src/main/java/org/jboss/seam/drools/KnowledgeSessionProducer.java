@@ -47,8 +47,7 @@ import org.jboss.seam.drools.configutil.DroolsConfigUtil;
 import org.jboss.seam.drools.qualifiers.Persisted;
 import org.jboss.seam.drools.qualifiers.Scanned;
 import org.jboss.weld.extensions.bean.generic.Generic;
-import org.jboss.weld.extensions.bean.generic.GenericBean;
-import org.jboss.weld.extensions.bean.generic.GenericProduct;
+import org.jboss.weld.extensions.bean.generic.GenericConfiguration;
 import org.jboss.weld.extensions.core.Veto;
 import org.jboss.weld.extensions.resourceLoader.ResourceProvider;
 import org.slf4j.Logger;
@@ -60,7 +59,7 @@ import org.slf4j.LoggerFactory;
  */
 @Veto
 @Dependent
-//@Generic(Drools.class)
+@GenericConfiguration(Drools.class)
 public class KnowledgeSessionProducer implements Serializable
 {
    private static final Logger log = LoggerFactory.getLogger(KnowledgeSessionProducer.class);
@@ -78,19 +77,21 @@ public class KnowledgeSessionProducer implements Serializable
    SeamDelegate delegate;
    
    @Inject
+   @Generic
    Drools drools;
    
    @Inject
-   //@GenericBean
+   @Generic
    DroolsConfigUtil configUtils;
       
    @Inject
-   //@GenericBean
+   @Default
+   @Generic
    KnowledgeBase kbase;
       
    @Inject
    @Scanned
-   //@GenericBean
+   @Generic
    KnowledgeBase scannedKbase;
    
    @Produces

@@ -52,7 +52,7 @@ import org.jboss.seam.drools.qualifiers.Scanned;
 import org.jboss.seam.drools.qualifiers.Stateful;
 import org.jboss.seam.drools.qualifiers.Stateless;
 import org.jboss.weld.extensions.bean.generic.Generic;
-import org.jboss.weld.extensions.bean.generic.GenericProduct;
+import org.jboss.weld.extensions.bean.generic.GenericConfiguration;
 import org.jboss.weld.extensions.core.Veto;
 import org.jboss.weld.extensions.resourceLoader.ResourceProvider;
 import org.slf4j.Logger;
@@ -64,7 +64,7 @@ import org.slf4j.LoggerFactory;
  */
 @Veto
 @Dependent
-//@Generic(Drools.class)
+@GenericConfiguration(Drools.class)
 public class ExecutionResultsProducer implements Serializable
 {
    private static final Logger log = LoggerFactory.getLogger(ExecutionResultsProducer.class);
@@ -77,21 +77,21 @@ public class ExecutionResultsProducer implements Serializable
    
    @Inject
    @Default
-   //@GenericProduct
+   @Generic
    StatelessKnowledgeSession statelessKsession;
 
    @Inject
    @Scanned
-   //@GenericProduct
+   @Generic
    StatelessKnowledgeSession scannedStatelessKsession;
 
    @Inject
-   @GenericProduct
+   @Generic
    StatefulKnowledgeSession statefullKsession;
 
    @Inject
    @Scanned
-   //@GenericProduct
+   @Generic
    StatefulKnowledgeSession scannedStatefullKSession;
 
    @SuppressWarnings("unchecked")

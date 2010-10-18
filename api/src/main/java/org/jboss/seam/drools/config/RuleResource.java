@@ -36,10 +36,10 @@ public class RuleResource
    public static final Pattern DIVIDER = Pattern.compile(":");
       
       private String fullPath;
-      private String type; // ResourceType
+      private String type; 
       private String templateData;
       
-      private String dtType; // DecisionTableInputType
+      private String dtType; 
       private String dtWorksheetName;
       
       private String location;

@@ -44,8 +44,8 @@ public class KBaseTest
       String pkgPath = KBaseTest.class.getPackage().getName().replaceAll("\\.", "/");
       JavaArchive archive = ShrinkWrap.create(JavaArchive.class)
       .addPackages(true, new DroolsModuleFilter("kbase"), KnowledgeBaseProducer.class.getPackage())
-      .addClass(CreditRules.class)
-      .addClass(DebitRules.class)
+      .addClass(Credit.class)
+      .addClass(Debit.class)
       .addClass(KBaseTestRuleResources.class)
       .addClass(MyKnowledgeBaseEventListener.class)
       .addResource(pkgPath + "/kbasetest.drl", ArchivePaths.create("kbasetest.drl"))
@@ -59,7 +59,7 @@ public class KBaseTest
    }
    
    @Test
-   public void testKBase(@CreditRules KnowledgeBase ckbase, @DebitRules KnowledgeBase dkbase)
+   public void testKBase(@Credit KnowledgeBase ckbase, @Debit KnowledgeBase dkbase)
    {
       assertNotNull(ckbase);
       assertNotNull(dkbase);

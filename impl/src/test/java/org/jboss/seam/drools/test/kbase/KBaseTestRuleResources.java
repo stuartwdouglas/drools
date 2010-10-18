@@ -4,27 +4,30 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 
 import org.jboss.seam.drools.config.Drools;
+import org.jboss.seam.drools.config.DroolsConfig;
 import org.jboss.seam.drools.config.DroolsProperty;
 import org.jboss.seam.drools.config.RuleResource;
-import org.jboss.seam.drools.config.RuleResources;
 
 public class KBaseTestRuleResources
 {
-   @Drools(kbuilderConfigFile = "kbuilderconfig.properties", kbaseConfigFile = "kbaseconfig.properties")
+   @Drools("creditRules")
    @Produces
    @ApplicationScoped
-   @CreditRules
-   public RuleResources configureCreditRules()
+   @Credit
+   public DroolsConfig produceCreditRules()
    {
-      return new RuleResources().add(new RuleResource("classpath:kbasetest.drl", "DRL", "forkbasetest"));
+	  return new DroolsConfig().addResource(new RuleResource("classpath:kbasetest.drl", "DRL", "forkbasetest"))
+	                           .addKBuilderConfig("kbuilderconfig.properties")
+	                           .addKBaseConfig("kbaseconfig.properties");
    }
    
-   @Drools(kbuilderProperties = { @DroolsProperty(name="drools.dialect.default", value="java") })
+   @Drools("debitRules")
    @Produces
    @ApplicationScoped
-   @DebitRules
-   public RuleResources configureDebitRules()
+   @Debit
+   public DroolsConfig configureDebitRules()
    {
-      return new RuleResources().add(new RuleResource("classpath:kbasetest.xls", "DTABLE", "XLS", "Tables_2"));
+	   return new DroolsConfig().addResource(new RuleResource("classpath:kbasetest.xls", "DTABLE", "XLS", "Tables_2"))
+	                            .addKBuilderProperty(new DroolsProperty("drools.dialect.default", "java"));
    }
 }

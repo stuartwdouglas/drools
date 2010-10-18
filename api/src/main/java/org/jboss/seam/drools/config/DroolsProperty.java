@@ -21,21 +21,28 @@
  */
 package org.jboss.seam.drools.config;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
 /**
  * 
  * @author stuart
+ * @author tihomir
  * 
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target( {})
-public @interface DroolsProperty
+public class DroolsProperty
 {
-   String value();
+	private String name;
+	private String value;
+	
+	public DroolsProperty(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
 
-   String name();
-   
+	public String getName() {
+		return name;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
 }

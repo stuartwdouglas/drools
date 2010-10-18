@@ -21,6 +21,9 @@
  */ 
 package org.jboss.seam.drools.qualifiers;
 
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
@@ -37,7 +40,7 @@ import javax.inject.Qualifier;
  * @author Tihomir Surdilovic
  */
 @Qualifier
-@Target( TYPE )
+@Target( { TYPE, METHOD, FIELD, PARAMETER })
 @Documented
 @Retention(RUNTIME)
 @Inherited

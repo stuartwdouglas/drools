@@ -35,7 +35,6 @@ import org.jboss.seam.drools.config.Drools;
 import org.jboss.seam.drools.qualifiers.EntryPoint;
 import org.jboss.seam.drools.qualifiers.Scanned;
 import org.jboss.weld.extensions.bean.generic.Generic;
-import org.jboss.weld.extensions.bean.generic.GenericProduct;
 import org.jboss.weld.extensions.core.Veto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +51,7 @@ public class EntryPointProducer implements Serializable
    private static final Logger log = LoggerFactory.getLogger(EntryPointProducer.class);
 
    @Inject
-   //@GenericProduct
+   @Generic
    StatefulKnowledgeSession statefullKsession;
    
    @Inject
